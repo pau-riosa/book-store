@@ -44,16 +44,16 @@ store.prototype.sellBook = function (title, quantity) {
       value: Price,
     } = this.list[bookIndex];
 
-    if (Stock < quantity) {
-      console.log(`${StoreTitle} has only ${Stock} left`);
-    } else {
-      this.list[bookIndex].quantity -= quantity;
-      this.earnings += quantity * Price;
-    }
+    console.log('Successful transaction');
+
+    (Stock < quantity) ? console.log(`${StoreTitle} has only ${Stock} left`) : this.list[bookIndex].quantity -= quantity; this.earnings += quantity * Price;
+
   } else {
     console.log(`We don't sell that book here`);
   }
 };
+
+sampleStore.sellBook('Cinder', 2)
 
 store.prototype.totalEarnings = function () {
   console.log(`Store name is ${this.name} with earnings of ${this.earnings}`);
