@@ -55,3 +55,9 @@ store.prototype.sellBook = function (title, quantity) {
     console.log(`We don't sell that book here`);
   }
 };
+
+store.prototype.totalEarnings = function() {
+  console.log(`Store name is ${this.name} with earnings of ${this.earnings}`)
+}
+
+sampleStore.totalEarnings()
