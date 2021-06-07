@@ -17,7 +17,7 @@ function book(title, quantity, value){
 
 let mybook = new book('Harry Potter', 5, 500)
 
-console.log(mybook)
+
 
 
 let addBook = (title, quantity, value) => { 
@@ -26,4 +26,17 @@ let addBook = (title, quantity, value) => {
 }
 
 addBook('Cinder', 10, 300)
-console.log(sampleStore.list);
+addBook('The Little Prince', 10, 300)
+addBook("Lord of the RIngs", 2, 500)
+
+store.prototype.restockBook = function (title, quantity) {
+    this.list.some((book) => {
+        if (book.title === title) {
+            book.quantity += quantity;
+        } 
+    })
+    console.log(this.list)
+}
+
+sampleStore.restockBook('Cinder', 5);
+sampleStore.restockBook('Harry Potter', 4);
