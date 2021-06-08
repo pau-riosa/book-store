@@ -26,37 +26,38 @@ store.prototype.restockBook = function (title, quantity) {
       book.quantity += quantity;
     }
   });
-  console.log(this.list);
+  //console.log(this.list);
 };
 
 sampleStore.restockBook("Cinder", 5);
 sampleStore.restockBook("Harry Potter", 4);
 
+// ASSIGNMENT !!!!!
 //sell book
 store.prototype.sellBook = function (title, quantity) {
   //find the book in the list
-  const bookIndex = this.list.findIndex((book) => book.title === title);
-  //update quantity
+  //const bookIndex = this.list.findIndex((book) => book.title === title);
+  let bookToBeSold = this.list.find(book => book.title === title);
 
-  //   const {title:StoreTitle, quantity:Stock, value:Price} =
-
-  if (bookIndex !== -1) {
-    const {
-      title: StoreTitle,
-      quantity: Stock,
-      value: Price,
-    } = this.list[bookIndex];
-
-    if (Stock < quantity) {
-      console.log(`${StoreTitle} has only ${Stock} left`);
-    } else {
-      this.list[bookIndex].quantity -= quantity;
-      this.earnings += quantity * Price;
+  //console.log(bookToBeSold)
+  if(bookToBeSold !== undefined){
+    // update quantity
+    if(bookToBeSold.quantity >= quantity){
+      bookToBeSold.quantity -=  quantity;
+    // update earnings
+      this.earnings += bookToBeSold.value * quantity;
+      console.log(`Transaction Successful!`)  
+    }else{
+      console.log(`Sorry! We only have ${bookToBeSold.quantity} copies of ${bookToBeSold.title} left`)
     }
-  } else {
+  }else {
     console.log(`We don't sell that book here`);
-  }
+  }  
 };
+
+sampleStore.sellBook("Cinder", 16);
+sampleStore.sellBook("The Little Prince", 100);
+
 
 store.prototype.totalEarnings = function () {
   console.log(`Store name is ${this.name} with earnings of ${this.earnings}`);
@@ -66,7 +67,7 @@ sampleStore.totalEarnings();
 
 store.prototype.listInventory = function () {
   this.list.map((book) => {
-    console.log(`${book.title}, ${book.quantity}, ${book.value}`);
+  console.log(`${book.title}, ${book.quantity}, ${book.value}`);
   });
 };
 
