@@ -32,13 +32,10 @@ store.prototype.restockBook = function (title, quantity) {
 sampleStore.restockBook("Cinder", 5);
 sampleStore.restockBook("Harry Potter", 4);
 
+// TODO
 //sell book
 store.prototype.sellBook = function (title, quantity) {
-  //find the book in the list
   const bookIndex = this.list.findIndex((book) => book.title === title);
-  //update quantity
-
-  //   const {title:StoreTitle, quantity:Stock, value:Price} =
 
   if (bookIndex !== -1) {
     const {
